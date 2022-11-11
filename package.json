@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node lessons/process.js"
+    "start": "nodemon ./lessons/index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,8 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

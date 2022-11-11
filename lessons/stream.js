@@ -40,8 +40,5 @@ const path = require('path')
 //     // stream.on('end',chunk => res.end())
 //
 //     strem.pipe((res))
-// })  new file:   index.js
-//         new file:   test2.txt
+// })
 
-modified:   stream.js
-modified:   test2.txt
