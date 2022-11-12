@@ -1,7 +1,7 @@
 const http = require('http')
 const EventEmitter = require('events')
 const PORT = process.env.PORT || 5000
-
+const Router = require('./framework/Router')
 const emitter = new EventEmitter();
 
 class Router {
@@ -44,6 +44,7 @@ class Router {
 }
 
 const router = new Router()
+
 router.get('/users', (req, res) => {
     res.end('YOU SEND REQUEST TO /USERS')
 })
