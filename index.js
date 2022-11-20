@@ -1,8 +1,8 @@
-const http = require('http')
+const http = require('http');
 const EventEmitter = require('events')
 const PORT = process.env.PORT || 5000
-const Router = require('./framework/Router')
-const emitter = new EventEmitter();
+
+const emitter = new EventEmitter()
 
 class Router {
     constructor() {
@@ -24,40 +24,41 @@ class Router {
         emitter.on(`[${path}]:[${method}]`, (req, res) => {
             handler(req, res)
         })
+
     }
 
     get(path, handler) {
-        this.request('GET', path, handler)
+        this.request("GET", path, handler)
     }
 
     post(path, handler) {
-        this.request('POST', path, handler)
+        this.request("POST", path, handler)
     }
 
     put(path, handler) {
-        this.request('PUT', path, handler)
+        this.request("PUT", path, handler)
     }
 
     delete(path, handler) {
-        this.request('DELETE', path, handler)
+        this.request("DELETE", path, handler)
     }
 }
 
 const router = new Router()
 
 router.get('/users', (req, res) => {
-    res.end('YOU SEND REQUEST TO /USERS')
+    res.end('*/users*')
 })
-
 router.get('/posts', (req, res) => {
-    res.end('YOU SEND REQUEST TO /POSTS')
+    res.end('*/posts*')
 })
 
 const server = http.createServer((req, res) => {
     const emitted = emitter.emit(`[${req.url}]:[${req.method}]`, req, res)
-    if (!emitted) {
-        res.end()
+    if(!emitted){
+        res.end('end 404')
     }
+    // res.end(req.url, '4404')
 })
 
-server.listen(PORT, () => console.log(`Server start on PORT ${PORT}`))
+server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`))
