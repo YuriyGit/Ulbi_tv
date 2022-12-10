@@ -1,18 +1,12 @@
 const PORT = process.env.PORT || 5000
 const Application = require('./framework/Application');
-const Router = require('./framework/Router')
-
+const userRouter = require('./src/user-router.js')
+const jsonParser = require('./framework/parseJason')
 
 const app = new Application();
 
-const router = new Router();
+app.use(jsonParser)
 
-router.get('/users', (req, res) => {
-    res.end('*/users*')
-})
-router.get('/posts', (req, res) => {
-    res.end('*/posts*')
-})
+app.addRouter(userRouter)
 
-app.addRouter(router)
 app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
